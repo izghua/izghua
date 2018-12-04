@@ -1,0 +1,5 @@
+package: izghua/src/zghua
+import:
+- package: github.com/izghua/zgh
+  subpackages:
+  - conn
