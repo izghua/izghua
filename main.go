@@ -8,6 +8,7 @@ package main
 
 import (
 	"fmt"
+	"izghua/pkg/zgh/utils"
 	"izghua/src/zghua/conf"
 	"net/smtp"
 	"strings"
@@ -43,7 +44,7 @@ func main() {
 	}
 	fmt.Println("不知道链接争取了没",a)
 
-
+	utils.Alarm("!","2")
 
 	//
 	//// 邮箱账号
