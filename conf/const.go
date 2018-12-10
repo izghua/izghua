@@ -13,6 +13,10 @@ const (
 	DbDataBase = "izghua"
 	DbHost = "127.0.0.1"
 
+	AlarmType = "mail,wechat"
 
+	MailUser = "test@g9zz.com"
+	MailPwd = "1234abcd#"
+	MailHost = "smtp.mxhichina.com:25"
 )
 

@@ -10,28 +10,8 @@ import (
 	"fmt"
 	"izghua/pkg/zgh/utils"
 	"izghua/src/zghua/conf"
-	"net/smtp"
-	"strings"
-
 	"izghua/src/zghua/entity"
 )
-
-//发送邮件的逻辑函数
-func SendMail(user, password, host, to, subject, body, mailtype string) error {
-	hp := strings.Split(host, ":")
-	auth := smtp.PlainAuth("", user, password, hp[0])
-	var content_type string
-	if mailtype == "html" {
-		content_type = "Content-Type: text/" + mailtype + "; charset=UTF-8"
-	} else {
-		content_type = "Content-Type: text/plain" + "; charset=UTF-8"
-	}
-
-	msg := []byte("To: " + to + "\r\nFrom: " + user + "<" + user + ">\r\nSubject: " + subject + "\r\n" + content_type + "\r\n\r\n" + body)
-	send_to := strings.Split(to, ";")
-	err := smtp.SendMail(host, auth, user, send_to, msg)
-	return err
-}
 
 
 func main() {
@@ -46,6 +26,28 @@ func main() {
 
 	utils.Alarm("!","2")
 
+
+	subject := "您好"
+	text := "你好！"
+	body := `
+    <html>
+    <body>
+    <h3>
+    "Kubernetes is an open source system for managing containerized applications across multiple hosts; providing basic mechanisms for deployment, maintenance, and scaling of applications.
+
+Kubernetes builds upon a decade and a half of experience at Google running production workloads at scale using a system called Borg, combined with best-of-breed ideas and practices from the community.
+
+Kubernetes is hosted by the Cloud Native Computing Foundation (CNCF). If you are a company that wants to help shape the evolution of technologies that are container-packaged, dynamically-scheduled and microservices-oriented, consider joining the CNCF. For details about who's involved and how Kubernetes plays a role, read the CNCF announcement."` + text + `
+    </h3>
+    </body>
+    </html>
+    `
+	err = utils.SendMail("xzghua@gmail.com",subject,body)
+	if err != nil {
+		fmt.Println(err.Error(),"有错")
+	}
+	fmt.Println("没有错")
+	//fmt.Println(err.Error())
 	//
 	//// 邮箱账号
 	//user := "test@g9zz.com"
@@ -56,18 +58,8 @@ func main() {
 	////接收者，内容可重复，邮箱之间用；隔开
 	//to := "xzghua@gmail.com"
 	////邮件主题
-	//subject := "测试通过golang发送邮件"
 	////邮件内容
-	//text := "你好！"
-	//body := `
-    //<html>
-    //<body>
-    //<h3>
-    //"测试通过golang发送邮件"` + text + `
-    //</h3>
-    //</body>
-    //</html>
-    //`
+
 	//fmt.Println("send email")
 	//执行逻辑函数
 	//err = SendMail(user, password, host, to, subject, body, "html2")

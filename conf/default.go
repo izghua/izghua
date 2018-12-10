@@ -27,7 +27,13 @@ func InitDefault() {
 	SqlServer = conn.InitMysql(dbUser,dbPwd,dbPort,dbHost,dbdb)
 
 	alarm := new(utils.AlarmParam)
-	alarmT := alarm.SetType("mail")
-	alarm.Options(alarmT)
+	alarmT := alarm.SetType(AlarmType)
+	alarm.AlarmInit(alarmT)
+
+	mail := new(utils.EmailParam)
+	mailUser := mail.SetMailUser(MailUser)
+	mailPwd := mail.SetMailPwd(MailPwd)
+	mailHost :=  mail.SetMailHost(MailHost)
+	mail.MailInit(mailPwd,mailHost,mailUser)
 }
 
