@@ -18,13 +18,12 @@ func main() {
 
 	conf.InitDefault()
 	test := new(entity.Test1)
-	a,err := conf.SqlServer.Where("id = ?",1).Get(test)
+	_,err := conf.SqlServer.Where("id = ?",1).Get(test)
 	if err != nil {
-		fmt.Println("有错误",err.Error())
+		utils.ZLog().Error("error",err.Error())
 	}
-	fmt.Println("不知道链接争取了没",a)
 
-	utils.Alarm("!","2")
+	utils.Alarm("!")
 
 
 	subject := "您好"
