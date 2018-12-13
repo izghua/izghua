@@ -8,15 +8,16 @@ package main
 
 import (
 	"fmt"
-	"izghua/pkg/zgh/utils"
-	"izghua/src/zghua/conf"
-	"izghua/src/zghua/entity"
+	"github.com/izghua/zgh/utils"
+	"github.com/izghua/zghua/conf"
+	"github.com/izghua/zghua/entity"
+	"time"
 )
 
 
 func main() {
 
-	conf.InitDefault()
+	//conf.InitDefault()
 	test := new(entity.Test1)
 	_,err := conf.SqlServer.Where("id = ?",1).Get(test)
 	if err != nil {
@@ -71,5 +72,18 @@ Kubernetes is hosted by the Cloud Native Computing Foundation (CNCF). If you are
 
 	//c,err := smtp.Dial(host + "1")
 	//fmt.Println(c.Verify(host),c.Close(),err)
+
+	res,err := conf.ZHashId.Encode([]int{1})
+	re2,err := conf.ZHashId.Encode([]int{2})
+	re3,err := conf.ZHashId.Encode([]int{23})
+	re4,err := conf.ZHashId.Encode([]int{2322})
+	re5,err := conf.ZHashId.Encode([]int{2234324})
+	fmt.Println(res,re2,re3,re4,re5,err)
+	req,err := conf.ZHashId.DecodeWithError(res)
+	fmt.Println(req,err)
+	err = conf.CacheClient.Set("test1","11234",1*time.Minute).Err()
+	fmt.Println(err,"看缓存是否错了")
+	cache,err := conf.CacheClient.Get("test1").Result()
+	fmt.Println(cache,err,"解雇")
 	}
 

@@ -7,21 +7,27 @@
 package conf
 
 import (
+	"github.com/go-redis/redis"
 	"github.com/go-xorm/xorm"
-	"izghua/pkg/zgh/conn"
-	"izghua/pkg/zgh/utils"
+	"github.com/izghua/zgh/conn"
+	"github.com/izghua/zgh/utils"
+	"github.com/speps/go-hashids"
 )
 
 var (
 	SqlServer *xorm.Engine
+	ZHashId *hashids.HashID
+	CacheClient *redis.Client
 )
 
 
-func InitDefault() {
+func init() {
 	DbInit()
 	AlarmInit()
 	MailInit()
-	ZlogInit()
+	ZLogInit()
+	ZHashIdInit()
+	RedisInit()
 
 	utils.ZLog().Info("kaiwanxiaone","叶落山城","有东西","还有东西")
 }
@@ -61,10 +67,33 @@ func MailInit() {
 	}
 }
 
-func ZlogInit() {
+func ZLogInit() {
 	zog := new(utils.ZLogParam)
 	err := zog.ZLogInit()
 	if err != nil {
 		utils.ZLog().Error(err.Error())
 	}
+}
+
+func ZHashIdInit() {
+	hd := new(utils.HashIdParams)
+	salt := hd.SetHashIdSalt(HashIdSalt)
+	hdLength := hd.SetHashIdLength(HashIdLength)
+	zHashId,err := hd.HashIdInit(hdLength,salt)
+	if err != nil {
+		utils.ZLog().Error(err.Error())
+	}
+	ZHashId = zHashId
+}
+
+func RedisInit() {
+	rc := new(conn.RedisClient)
+	addr := rc.SetRedisAddr(RedisAddr)
+	pwd := rc.SetRedisPwd(RedisPwd)
+	db := rc.SetRedisDb(RedisDb)
+	client,err := rc.RedisInit(addr,db,pwd)
+	if err != nil {
+		utils.ZLog().Error(err.Error())
+	}
+	CacheClient = client
 }

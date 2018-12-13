@@ -1,5 +1,16 @@
-package: izghua/src/zghua
+package: izghua/zghua
 import:
+- package: github.com/go-redis/redis
+  version: ~6.14.2
+- package: github.com/go-xorm/xorm
+  version: ~0.7.1
 - package: github.com/izghua/zgh
   subpackages:
   - conn
+  - utils
+- package: github.com/izghua/zghua
+  subpackages:
+  - conf
+  - entity
+- package: github.com/speps/go-hashids
+  version: ~2.0.0

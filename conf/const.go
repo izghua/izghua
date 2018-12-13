@@ -18,5 +18,14 @@ const (
 	MailUser = "test@g9zz.com"
 	MailPwd = "1234abcd#"
 	MailHost = "smtp.mxhichina.com:25"
+
+
+	HashIdSalt = "i must add a salt what is only for me"
+	HashIdLength = 8
+
+
+	RedisAddr = "localhost:6379"
+	RedisPwd = ""
+	RedisDb = 0
 )
 
