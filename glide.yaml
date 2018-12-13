@@ -8,9 +8,5 @@ import:
   subpackages:
   - conn
   - utils
-- package: github.com/izghua/zghua
-  subpackages:
-  - conf
-  - entity
 - package: github.com/speps/go-hashids
   version: ~2.0.0

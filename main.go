@@ -9,8 +9,8 @@ package main
 import (
 	"fmt"
 	"github.com/izghua/zgh/utils"
-	"github.com/izghua/zghua/conf"
-	"github.com/izghua/zghua/entity"
+	"izghua/zghua/conf"
+	"izghua/zghua/entity"
 	"time"
 )
 

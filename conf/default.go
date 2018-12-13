@@ -9,9 +9,9 @@ package conf
 import (
 	"github.com/go-redis/redis"
 	"github.com/go-xorm/xorm"
+	"github.com/speps/go-hashids"
 	"github.com/izghua/zgh/conn"
 	"github.com/izghua/zgh/utils"
-	"github.com/speps/go-hashids"
 )
 
 var (

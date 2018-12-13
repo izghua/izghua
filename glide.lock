@@ -1,0 +1,38 @@
+hash: 88c27478745c4069c4008b1343d2c3a0e189e6ac1badec7d16e7265b0effb93e
+updated: 2018-12-14T00:43:37.558525+08:00
+imports:
+- name: github.com/go-errors/errors
+  version: d98b870cc4e05f1545532a80e9909be8216095b6
+- name: github.com/go-redis/redis
+  version: b3d9bf10f6666b2ee5100a6f3f84f4caf3b4e37d
+  subpackages:
+  - internal
+  - internal/consistenthash
+  - internal/hashtag
+  - internal/pool
+  - internal/proto
+  - internal/singleflight
+  - internal/util
+- name: github.com/go-sql-driver/mysql
+  version: 60d456a402782453be397030407e34decaf04d73
+- name: github.com/go-xorm/builder
+  version: 03eb88feccce3e477c318ce7f6f1b386544ab20b
+- name: github.com/go-xorm/core
+  version: 6bc9412b1c4d00c0a5cc9dd939a245a82cc50227
+- name: github.com/go-xorm/xorm
+  version: 1f39c590c64924f358c0d89016ac9b2bb84e9125
+- name: github.com/izghua/zgh
+  version: c2a1a266df239d0198b4f02f5052e2eaf9fabc3b
+  subpackages:
+  - conf
+  - conn
+  - utils
+- name: github.com/Penglq/QLog
+  version: fef16346d0a8d801228c457f3c56f16f56847389
+- name: github.com/speps/go-hashids
+  version: ad304c6ede07ca1f915c30a5510c45860aa165a7
+- name: google.golang.org/appengine
+  version: a37df1387b4521194676d88c79230c613610d5f4
+  subpackages:
+  - cloudsql
+testImports: []
