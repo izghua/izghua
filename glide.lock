@@ -1,6 +1,8 @@
-hash: 88c27478745c4069c4008b1343d2c3a0e189e6ac1badec7d16e7265b0effb93e
-updated: 2018-12-14T00:43:37.558525+08:00
+hash: 3ac11c389d34328fa74b8e030709fb3c34246b52ca3650c3d9c2269234f75042
+updated: 2018-12-16T02:12:42.696356+08:00
 imports:
+- name: github.com/dgrijalva/jwt-go
+  version: 3af4c746e1c248ee8491a3e0c6f7a9cd831e95f8
 - name: github.com/go-errors/errors
   version: d98b870cc4e05f1545532a80e9909be8216095b6
 - name: github.com/go-redis/redis
@@ -22,15 +24,20 @@ imports:
 - name: github.com/go-xorm/xorm
   version: 1f39c590c64924f358c0d89016ac9b2bb84e9125
 - name: github.com/izghua/zgh
-  version: c2a1a266df239d0198b4f02f5052e2eaf9fabc3b
+  version: d98b7357075712a487649886bedaff61f562ed88
   subpackages:
   - conf
   - conn
+  - request
   - utils
 - name: github.com/Penglq/QLog
   version: fef16346d0a8d801228c457f3c56f16f56847389
 - name: github.com/speps/go-hashids
   version: ad304c6ede07ca1f915c30a5510c45860aa165a7
+- name: golang.org/x/net
+  version: 891ebc4b82d6e74f468c533b06f983c7be918a96
+  subpackages:
+  - publicsuffix
 - name: google.golang.org/appengine
   version: a37df1387b4521194676d88c79230c613610d5f4
   subpackages:

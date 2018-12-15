@@ -6,36 +6,46 @@
  */
 package my
 
-import "fmt"
+import (
+	"fmt"
+	"runtime"
+	"strings"
+)
 
-type options struct {
-	a int64
-	b string
-	c map[int]string
+
+func Testaa() {
+	test2()
 }
 
-func (o *options) writeA(a int64) *options {
-	o.a = a
-	return o
-}
-func (o *options) writeB(b string) *options {
-	o.b = b
-	return o
-}
+func test2(){
+	fmt.Println("尝试隔断")
+	pc,file,line,ok := runtime.Caller(2)
+	fmt.Println(pc)
+	fmt.Println(file)
+	fmt.Println(line)
+	fmt.Println(ok)
+	f := runtime.FuncForPC(pc)
+	fmt.Println(f.Name())
+	fmt.Println("尝试隔断2")
 
-func (o *options) WriteC(c map[int]string) *options {
-	o.c = c
-	return o
-}
+	pc,file,line,ok = runtime.Caller(0)
+	fmt.Println(pc)
+	fmt.Println(file)
+	fmt.Println(line)
+	fmt.Println(ok)
+	f = runtime.FuncForPC(pc)
+	fmt.Println(f.Name())
+	fmt.Println("尝试隔断3")
 
-type Foo struct {
-	verbosity int
-}
+	pc,file,line,ok = runtime.Caller(1)
+	fmt.Println(pc)
+	fmt.Println(file)
+	fmt.Println(line)
+	fmt.Println(ok)
+	f = runtime.FuncForPC(pc)
+	fmt.Println(f.Name())
+	arrStr := strings.Split(f.Name(),"/")
 
+	fmt.Println("尝试隔断4",arrStr[len(arrStr)-1])
 
-func main() {
-	op := new(options)
-	op.writeA(int64(1)).writeB("test").WriteC(make(map[int]string, 0))
-
-	fmt.Println(op.a, op.b, op.c)
 }

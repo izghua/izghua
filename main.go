@@ -11,11 +11,13 @@ import (
 	"github.com/izghua/zgh/utils"
 	"izghua/zghua/conf"
 	"izghua/zghua/entity"
-	"time"
+	"izghua/zghua/my"
 )
 
 
 func main() {
+
+	my.Testaa()
 
 	//conf.InitDefault()
 	test := new(entity.Test1)
@@ -46,7 +48,7 @@ Kubernetes is hosted by the Cloud Native Computing Foundation (CNCF). If you are
 	if err != nil {
 		fmt.Println(err.Error(),"有错")
 	}
-	fmt.Println("没有错")
+	//fmt.Println("没有错")
 	//fmt.Println(err.Error())
 	//
 	//// 邮箱账号
@@ -73,17 +75,17 @@ Kubernetes is hosted by the Cloud Native Computing Foundation (CNCF). If you are
 	//c,err := smtp.Dial(host + "1")
 	//fmt.Println(c.Verify(host),c.Close(),err)
 
-	res,err := conf.ZHashId.Encode([]int{1})
-	re2,err := conf.ZHashId.Encode([]int{2})
-	re3,err := conf.ZHashId.Encode([]int{23})
-	re4,err := conf.ZHashId.Encode([]int{2322})
-	re5,err := conf.ZHashId.Encode([]int{2234324})
-	fmt.Println(res,re2,re3,re4,re5,err)
-	req,err := conf.ZHashId.DecodeWithError(res)
-	fmt.Println(req,err)
-	err = conf.CacheClient.Set("test1","11234",1*time.Minute).Err()
-	fmt.Println(err,"看缓存是否错了")
-	cache,err := conf.CacheClient.Get("test1").Result()
-	fmt.Println(cache,err,"解雇")
+	//res,err := conf.ZHashId.Encode([]int{1})
+	//re2,err := conf.ZHashId.Encode([]int{2})
+	//re3,err := conf.ZHashId.Encode([]int{23})
+	//re4,err := conf.ZHashId.Encode([]int{2322})
+	//re5,err := conf.ZHashId.Encode([]int{2234324})
+	//fmt.Println(res,re2,re3,re4,re5,err)
+	//req,err := conf.ZHashId.DecodeWithError(res)
+	//fmt.Println(req,err)
+	//err = conf.CacheClient.Set("test1","11234",1*time.Minute).Err()
+	//fmt.Println(err,"看缓存是否错了")
+	//cache,err := conf.CacheClient.Get("test1").Result()
+	//fmt.Println(cache,err,"解雇")
 	}
 

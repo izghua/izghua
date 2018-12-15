@@ -9,9 +9,9 @@ package conf
 import (
 	"github.com/go-redis/redis"
 	"github.com/go-xorm/xorm"
-	"github.com/speps/go-hashids"
 	"github.com/izghua/zgh/conn"
 	"github.com/izghua/zgh/utils"
+	"github.com/speps/go-hashids"
 )
 
 var (
@@ -28,6 +28,10 @@ func init() {
 	ZLogInit()
 	ZHashIdInit()
 	RedisInit()
+	JwtInit()
+	QCaptchaInit()
+
+	//utils.QQCaptchaVerify("234","234","127.0.0.1")
 
 	utils.ZLog().Info("kaiwanxiaone","叶落山城","有东西","还有东西")
 }
@@ -69,7 +73,8 @@ func MailInit() {
 
 func ZLogInit() {
 	zog := new(utils.ZLogParam)
-	err := zog.ZLogInit()
+	fileName := zog.SetFileName("zghua")
+	err := zog.ZLogInit(fileName)
 	if err != nil {
 		utils.ZLog().Error(err.Error())
 	}
@@ -84,6 +89,7 @@ func ZHashIdInit() {
 		utils.ZLog().Error(err.Error())
 	}
 	ZHashId = zHashId
+
 }
 
 func RedisInit() {
@@ -96,4 +102,22 @@ func RedisInit() {
 		utils.ZLog().Error(err.Error())
 	}
 	CacheClient = client
+}
+
+func JwtInit() {
+	jt := new(utils.JwtParam)
+ 	ad := jt.SetDefaultAudience("zgh")
+ 	jti := jt.SetDefaultJti("izghua")
+ 	iss := jt.SetDefaultIss("izghua")
+ 	sk := jt.SetDefaultSecretKey("izghua")
+ 	rc := jt.SetRedisCache(CacheClient)
+ 	_ = jt.JwtInit(ad,jti,iss,sk,rc)
+
+}
+
+func QCaptchaInit() {
+	qc := new(utils.QQCaptcha)
+	aid := qc.SetAid(QCaptchaAid)
+	sk := qc.SetSecretKey(QCaptchaSecreptKey)
+	_ = qc.QQCaptchaInit(aid,sk)
 }

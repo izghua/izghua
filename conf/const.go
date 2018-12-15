@@ -27,5 +27,9 @@ const (
 	RedisAddr = "localhost:6379"
 	RedisPwd = ""
 	RedisDb = 0
+
+
+	QCaptchaAid = "2040723710"
+	QCaptchaSecreptKey = "0hG5RLcAjsrktVjvV5YRRQQ**"
 )
 

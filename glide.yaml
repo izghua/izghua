@@ -5,6 +5,7 @@ import:
 - package: github.com/go-xorm/xorm
   version: ~0.7.1
 - package: github.com/izghua/zgh
+  version: ~0.0.14
   subpackages:
   - conn
   - utils
