@@ -8,6 +8,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"github.com/izghua/zgh/utils"
 	"izghua/zghua/conf"
 	"izghua/zghua/entity"
@@ -16,6 +17,10 @@ import (
 
 
 func main() {
+
+	//csrf
+	//建表
+
 
 	my.Testaa()
 
@@ -87,5 +92,9 @@ Kubernetes is hosted by the Cloud Native Computing Foundation (CNCF). If you are
 	//fmt.Println(err,"看缓存是否错了")
 	//cache,err := conf.CacheClient.Get("test1").Result()
 	//fmt.Println(cache,err,"解雇")
+	gin.SetMode(gin.DebugMode)
+	r := gin.New()
+	utils.ZLog().Warn(r.Run(":8081"))
+
 	}
 

@@ -8,9 +8,9 @@ package conf
 
 const (
 	DbUser = "root"
-	DbPassword = "123456"
+	DbPassword = "Passw0rd"
 	DbPort = "3306"
-	DbDataBase = "izghua"
+	DbDataBase = "test"
 	DbHost = "127.0.0.1"
 
 	AlarmType = "mail,wechat"
