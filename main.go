@@ -8,11 +8,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"github.com/izghua/zgh/utils"
 	"izghua/zghua/conf"
 	"izghua/zghua/entity"
 	"izghua/zghua/my"
+	"izghua/zghua/router"
 )
 
 
@@ -92,8 +92,8 @@ Kubernetes is hosted by the Cloud Native Computing Foundation (CNCF). If you are
 	//fmt.Println(err,"看缓存是否错了")
 	//cache,err := conf.CacheClient.Get("test1").Result()
 	//fmt.Println(cache,err,"解雇")
-	gin.SetMode(gin.DebugMode)
-	r := gin.New()
+
+	r := router.RouterInit()
 	utils.ZLog().Warn(r.Run(":8081"))
 
 	}
