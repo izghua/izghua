@@ -13,6 +13,7 @@ import (
 	"izghua/zghua/entity"
 	"izghua/zghua/my"
 	"izghua/zghua/router"
+	"os"
 )
 
 
@@ -92,7 +93,10 @@ Kubernetes is hosted by the Cloud Native Computing Foundation (CNCF). If you are
 	//fmt.Println(err,"看缓存是否错了")
 	//cache,err := conf.CacheClient.Get("test1").Result()
 	//fmt.Println(cache,err,"解雇")
-
+	fp := conf.SqlServer.Dialect().URI().DbName + ".sql"
+	_ = os.Remove(fp)
+	err = conf.SqlServer.DumpAllToFile("./backup/"+fp)
+	fmt.Println(err)
 	r := router.RouterInit()
 	utils.ZLog().Warn(r.Run(":8081"))
 
