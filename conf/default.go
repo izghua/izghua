@@ -31,10 +31,11 @@ func init() {
 	JwtInit()
 	QCaptchaInit()
 
-	//utils.QQCaptchaVerify("234","234","127.0.0.1")
-
-	utils.ZLog().Info("kaiwanxiaone","叶落山城","有东西","还有东西")
+	//err := utils.SendMail("2067930913@qq.com")
+	//fmt.Println(err,"看发送邮件")
 }
+
+
 
 func DbInit () {
 	sp := new(conn.Sp)

@@ -13,7 +13,7 @@ import (
 	"github.com/izghua/zgh/gin/util"
 	"net/http"
 
-	i "izghua/zghua/router/index"
+	i "github.com/izghua/zghua/router/index"
 )
 
 func RouterInit() *gin.Engine{
