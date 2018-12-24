@@ -11,12 +11,11 @@ import (
 	"github.com/izghua/zgh/gin/api"
 	"github.com/izghua/zgh/gin/middleware"
 	"github.com/izghua/zgh/gin/util"
+	index2 "github.com/izghua/zghua/router/index"
 	"net/http"
-
-	i "github.com/izghua/zghua/router/index"
 )
 
-func RouterInit() *gin.Engine{
+func RoutersInit() *gin.Engine{
 	gin.SetMode(gin.DebugMode)
 	r := gin.New()
 	r.Use(ginmiddleware.CORS(ginmiddleware.CORSOptions{Origin: ""}))
@@ -31,7 +30,7 @@ func RouterInit() *gin.Engine{
 	index := r.Group("/index")
 	index.Use()
 	{
-		index.GET("/index",i.Index)
+		index.GET("/index",index2.Index)
 	}
 
 	return r
