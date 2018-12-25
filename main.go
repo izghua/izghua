@@ -11,11 +11,8 @@ import (
 	"github.com/go-xorm/xorm"
 	"github.com/izghua/zgh"
 	"github.com/izghua/zgh/conn"
-	"github.com/izghua/zgh/utils/backup"
 	"github.com/izghua/zghua/conf"
 	"github.com/izghua/zghua/router"
-	"os"
-	"time"
 )
 
 var SqlServer *xorm.Engine
@@ -24,25 +21,34 @@ func main() {
 	//日志一定要最先初始化
 	ZLogInit()
 	DbInit()
+	conf.DefaultInit()
 	//csrf
 	//建表
 
-	bp := new(backup.BackUpParam)
-	f3, err := os.Open("./backup")
+	//bp := new(backup.BackUpParam)
+	//dest := "./"+time.Now().Format("2006-01-02")+".zip"
+	//backu := bp.SetFilePath("./backup/").SetFiles("./log","./backup").SetDest(dest).SetDuration(time.Second * 20)
+	//err := backu.Backup()
+	//if err != nil {
+	//	fmt.Println("备份出了问题",err.Error())
+	//	zgh.ZLog().Error("备份出了问题",err.Error())
+	//} else {
+	//	fmt.Println("嘿嘿,备份没有问题","空空")
+	//	zgh.ZLog().Info("嘿嘿,备份没有问题","空空")
+	//}
+	//m := new(mail.EmailParam)
+	data := make(map[string]string)
+	data["2018-12-25.zip"] = "./2018-12-25.zip"
+	data["backup.sql"] = "./backup/2018-12-25-sql-backup.sql"
+	err := conf.MailClient.SetSubject("这是一封很重要的邮件").SetAttaches(data).SetBody(`<html><body>
+		<p><img src="https://golang.org/doc/gopher/doc.png"></p><br/>
+		<h1>天黑了,有点饿了.</h1>
+		</body></html>`).SendMail2("xzghua@gmail.com")
+	//err := m.SendMail2("xzghua@gmail.com")
 	if err != nil {
-		zgh.ZLog().Error("error",err.Error())
-	}
-	defer f3.Close()
-	var files = []*os.File{ f3}
-	dest := "./backup"
-	backu := bp.SetFilePath("./backup/").SetFiles(files).SetDest(dest).SetDuration(time.Second * 20)
-	err = backu.Backup()
-	if err != nil {
-		fmt.Println("备份出了问题",err.Error())
-		//zgh.ZLog().Error("备份出了问题",err.Error())
+		fmt.Println("有错误",err.Error())
 	} else {
-		fmt.Println("嘿嘿,备份没有问题","空空")
-		//zgh.ZLog().Info("嘿嘿,备份没有问题","空空")
+		fmt.Println("没错误")
 	}
 
 	//fp := conf.SqlServer.Dialect().URI().DbName + ".sql"

@@ -23,10 +23,11 @@ var (
 	SqlServer *xorm.Engine
 	ZHashId *hashids.HashID
 	CacheClient *redis.Client
+	MailClient *mail.EmailParam
 )
 
 
-func init() {
+func DefaultInit() {
 	AlarmInit()
 	MailInit()
 	ZHashIdInit()
@@ -59,10 +60,11 @@ func MailInit() {
 	mailUser := m.SetMailUser(MailUser)
 	mailPwd := m.SetMailPwd(MailPwd)
 	mailHost :=  m.SetMailHost(MailHost)
-	err := m.MailInit(mailPwd,mailHost,mailUser)
+	mails,err := m.MailInit(mailPwd,mailHost,mailUser)
 	if err != nil {
 		zgh.ZLog().Error(err.Error())
 	}
+	MailClient = mails
 }
 
 
