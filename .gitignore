@@ -1,9 +1,13 @@
 .*
 .idea/*
+.DS_Store
 vendor/*
+
 backup/*
 !backup/.*
+
 log/*
 !log/.*
+
 zip/*
 !zip/.*
