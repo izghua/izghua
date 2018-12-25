@@ -6,11 +6,13 @@
  */
 package conf
 
+import "time"
+
 const (
 	DbUser = "root"
 	DbPassword = "Passw0rd"
 	DbPort = "3306"
-	DbDataBase = "test"
+	DbDataBase = "zghua"
 	DbHost = "127.0.0.1"
 
 	AlarmType = "mail,wechat"
@@ -31,5 +33,9 @@ const (
 
 	QCaptchaAid = "2040723710"
 	QCaptchaSecreptKey = "0hG5RLcAjsrktVjvV5YRRQQ**"
+
+	BackUpFilePath = "./backup/"
+	BackUpDuration = time.Hour * 24
+	BackUpSentTo = "xzghua@gmail.com"
 )
 
